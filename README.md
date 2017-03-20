@@ -22,7 +22,7 @@ set.gt(1000) -> {foo: 'baz'}
 ## Installation
 
 ```bash
-$ npm install
+$ npm install bisect-sorted-set
 ```
 
 ## API
