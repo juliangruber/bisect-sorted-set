@@ -1,6 +1,6 @@
 {
   "name": "bisect-sorted-set",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An in memory sorted set that uses binary search on numeric indexes to find values next to each other",
   "scripts": {
     "test": "prettier-standard-formatter *.js && tape test.js"
