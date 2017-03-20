@@ -11,5 +11,7 @@
   "devDependencies": {
     "prettier-standard-formatter": "^0.222222222222222.333333333333333",
     "tape": "^4.6.3"
-  }
+  },
+  "repository": "juliangruber/bisect-sorted-set",
+  "license": "MIT"
 }

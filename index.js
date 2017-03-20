@@ -5,27 +5,40 @@ module.exports = Set
 function Set () {
   if (!(this instanceof Set)) return new Set()
   this._list = []
-  this._values = {}
 }
 
 Set.prototype.put = function (idx, value) {
-  this._values[idx] = value
-  sorted.add(this._list, idx)
+  sorted.add(this._list, new Entry(idx, value), cmp)
 }
 
-Set.prototype.get = function (idx) {
-  return this._values[idx]
+Set.prototype.get = function (target) {
+  var entry = new Entry(target, null)
+  var idx = sorted.eq(this._list, entry, cmp)
+  if (idx === -1) return
+  return this._list[idx].value
 }
 
 Set.prototype.del = function (idx) {
-  sorted.remove(this._list, idx)
-  delete this._values[idx]
+  var entry = new Entry(idx, null)
+  sorted.remove(this._list, entry, cmp)
 }
 
 var methods = ['gt', 'gte', 'lt', 'lte']
 methods.forEach(function (fn) {
   Set.prototype[fn] = function (target) {
-    var idx = sorted[fn](this._list, target)
-    return this._values[this._list[idx]]
+    var entry = new Entry(target, null)
+    var idx = sorted[fn](this._list, entry, cmp)
+    if (idx === -1) return
+    return this._list[idx].value
   }
 })
+
+function cmp (a, b) {
+  if (a.idx === b.idx) return 0
+  return a.idx > b.idx ? 1 : -1
+}
+
+function Entry (idx, value) {
+  this.idx = idx
+  this.value = value
+}
