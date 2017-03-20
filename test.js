@@ -16,5 +16,8 @@ test('integration', function (t) {
   t.notOk(set.get(1000))
   t.deepEqual(set.get(100001), { foo: 'baz' })
 
+  set.put(1, { beep: 'boop' })
+  t.deepEqual(set.get(1), { beep: 'boop' })
+
   t.end()
 })
