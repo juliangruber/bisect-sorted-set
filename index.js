@@ -1,33 +1,33 @@
 var sorted = require('sorted-array-functions')
 
-module.exports = Collection
+module.exports = Set
 
-function Collection () {
-  if (!(this instanceof Collection)) return new Collection()
+function Set () {
+  if (!(this instanceof Set)) return new Set()
   this._list = []
-  this._map = {}
+  this._values = []
 }
 
-Collection.prototype.put = function (idx, value) {
-  this._map[this._list.length] = value
+Set.prototype.put = function (idx, value) {
+  this._values.push(value)
   sorted.add(this._list, idx)
 }
 
-Collection.prototype.get = function (target) {
+Set.prototype.get = function (target) {
   var idx = sorted.eq(this._list, target)
-  return this._map[idx]
+  return this._values[idx]
 }
 
-Collection.prototype.del = function (target) {
+Set.prototype.del = function (target) {
   var idx = sorted.eq(this._list, target)
   sorted.remove(this._list, idx)
-  delete this._map[idx]
+  this._values[idx] = null
 }
 
 var methods = ['gt', 'gte', 'lt', 'lte']
 methods.forEach(function (fn) {
-  Collection.prototype[fn] = function (target) {
+  Set.prototype[fn] = function (target) {
     var idx = sorted[fn](this._list, target)
-    return this._map[idx]
+    return this._values[idx]
   }
 })
