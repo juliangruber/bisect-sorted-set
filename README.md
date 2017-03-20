@@ -1,6 +1,8 @@
 
 # Bisect-Sorted-Set
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/juliangruber/bisect-sorted-set.svg)](https://greenkeeper.io/)
+
 An in memory sorted set that uses binary serach on numeric indexes to find values next to each other.
 
 ## Usage
