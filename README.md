@@ -1,7 +1,7 @@
 
 # Bisect-Sorted-Set
 
-An in memory sorted set that uses binary serach on numeric indexes to find values next to each other.
+An in memory sorted set that uses binary search on numeric indexes to find values next to each other.
 
 ## Usage
 
